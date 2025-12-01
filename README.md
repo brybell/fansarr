@@ -4,13 +4,13 @@
 ![GitHub License](https://img.shields.io/github/license/brybell/fansarr?style=for-the-badge)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![Built with SolidJS](https://img.shields.io/badge/Built%20with-SolidJS-blue?style=for-the-badge)](https://github.com/solidjs/solid)
-![Fork of Stasharr](https://img.shields.io/badge/Fork%20of-Stasharr-blue?style=for-the-badge)
+[![Fork of Stasharr](https://img.shields.io/badge/Fork%20of-Stasharr-blue?style=for-the-badge)](https://github.com/enymawse/stasharr)
 
 **A fork of Stasharr that transforms FansDB into your content management hub by seamlessly integrating with Whisparr v3+ and Stash applications.**
 
 > **🍴 This is a fork of [Stasharr](https://github.com/enymawse/stasharr) by [enymawse](https://github.com/enymawse), adapted to work with FansDB instead of StashDB. All credit for the original implementation goes to the original author.**
 
-Turn FansDB from a simple database into a comprehensive content management system with one-click downloads, bulk operations, and real-time monitoring—all without leaving your browser.
+Turn FansDB from a simple database into a comprehensive content management system with one-click downloads, bulk operations, and real-time monitoring—all without leaving your browser. **This is still under development, due to metadata differences and the lack of support for FansDB on Whisparr.**
 
 ## Features
 
@@ -286,5 +286,3 @@ If Fansarr has improved your content management workflow:
 🤝 **Contribute** to make Fansarr even better
 
 ---
-
-_Transform your FansDB experience today with Fansarr — because managing your content library should be effortless._
