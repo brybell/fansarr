@@ -66,7 +66,7 @@ export default {
               compress: {
                 defaults: true,
                 ecma: '2020',
-                drop_console: ['debug'],
+                drop_console: true,
               },
             },
           }),
