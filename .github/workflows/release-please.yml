@@ -27,13 +27,11 @@ jobs:
         uses: googleapis/release-please-action@v4
         id: release
         with:
-          token: ${{ secrets.RELEASE_PLEASE_STASHARR }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
 
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_STASHARR }}
         run: |
-          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stasharr.user.js
-          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/stasharr.meta.js
+          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/fansarr.user.js
+          gh release upload ${{ steps.release.outputs.tag_name }} ./dist/fansarr.meta.js
