@@ -2,6 +2,24 @@ import { FansDBScene } from '../service/StashDBService';
 import { Whisparr } from '../types/whisparr';
 
 /**
+ * Configuration for transforming FansDB scene data to Whisparr format
+ */
+interface TransformConfig {
+  rootFolderPath?: string;
+  searchForNewMovie?: boolean;
+  qualityProfile?: number;
+  tags?: number[];
+}
+
+/**
+ * Extended movie payload that includes optional FansDB-specific fields
+ */
+type ExtendedMoviePayload = Whisparr.MoviePayload & {
+  releaseDate?: string;
+  performers?: string[];
+};
+
+/**
  * Transforms FansDB scene data to Whisparr-compatible format
  * Handles metadata differences between FansDB and StashDB
  */
@@ -11,9 +29,9 @@ export class MetadataTransformer {
    */
   static transformFansDBSceneToWhisparr(
     fansdbScene: FansDBScene,
-    config: any,
+    config: TransformConfig,
   ): Whisparr.MoviePayload {
-    const payload = {
+    const payload: ExtendedMoviePayload = {
       title: this.cleanTitle(fansdbScene.title),
       studio: this.transformStudio(fansdbScene.studio),
       foreignId: `fansdb:${fansdbScene.id}`, // Prefix to indicate source
@@ -28,14 +46,12 @@ export class MetadataTransformer {
 
     // Add release date if available
     if (fansdbScene.release_date) {
-      (payload as any).releaseDate = fansdbScene.release_date;
+      payload.releaseDate = fansdbScene.release_date;
     }
 
     // Add performers if available
     if (fansdbScene.performers && fansdbScene.performers.length > 0) {
-      (payload as any).performers = this.transformPerformers(
-        fansdbScene.performers,
-      );
+      payload.performers = this.transformPerformers(fansdbScene.performers);
     }
 
     return payload;
