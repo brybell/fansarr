@@ -33,6 +33,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
+          include-v-in-tag: true
+          changelog-types: '[feat,fix,chore,docs,style,refactor,perf,test,build,ci,revert]'
 
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
