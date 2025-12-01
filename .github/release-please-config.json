@@ -14,5 +14,8 @@
       "type": "node-workspace",
       "component": ""
     }
-  ]
+  ],
+  "include-component-in-tag": false,
+  "skip-github-release": false,
+  "skip-github-pull-request": true
 }
