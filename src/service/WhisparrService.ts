@@ -34,7 +34,7 @@ export default class WhisparrService extends ServiceBase {
    * Run a Whisparr Command by sending a POST request with the command payload.
    *
    * @param {Config} config - The configuration object containing API details.
-   * @param {any} body - The payload to send in the request body.
+   * @param {Whisparr.CommandPayload} body - The payload to send in the request body.
    * @returns {Promise<Whisparr.WhisparrCommandResponse | null>} - The response from the Whisparr API.
    */
   static async command(

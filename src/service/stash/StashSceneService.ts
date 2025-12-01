@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Config } from '../../models/Config';
 import StashServiceBase from './StashServiceBase';
 import { StashScene, StashStats } from '../../types/stash';
@@ -69,8 +71,9 @@ export default class StashSceneService extends StashServiceBase {
             }
         }`;
     const request = StashServiceBase.request(config, { query, variables });
-    return request.then(
-      (res) => res?.data?.findScenes?.scenes[0] as StashScene,
-    );
+    return request.then((res) => {
+      const scenes = (res as any)?.data?.findScenes?.scenes;
+      return scenes?.[0] as StashScene;
+    });
   }
 }

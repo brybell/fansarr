@@ -1,12 +1,32 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Config } from '../../models/Config';
 
+// Import Violentmonkey types
+declare const GM: {
+  xmlHttpRequest: (options: {
+    url: string;
+    method: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE';
+    responseType: 'json';
+    headers: { [key: string]: string };
+    data?: string;
+  }) => Promise<{
+    response: unknown;
+    responseHeaders: string;
+    status: number;
+    statusText: string;
+    readyState: number;
+    responseText: string | undefined;
+    responseXML: Document | null;
+    finalUrl: string;
+  }>;
+};
+
 export default class StashServiceBase {
-  public static async request(
+  public static async request<T = unknown>(
     config: Config,
     requestData: unknown,
-  ): Promise<any> {
+  ): Promise<T> {
     try {
       return await GM.xmlHttpRequest({
         url: config.stashGqlEndpoint(),
@@ -17,10 +37,7 @@ export default class StashServiceBase {
           ApiKey: config.stashApiKey,
         },
         data: JSON.stringify(requestData),
-      }).then(
-        (res) => (res as VMScriptResponseObject<any>).response,
-        (res) => (res as VMScriptResponseObject<any>).response,
-      );
+      }).then((res) => (res as VmXHRDetails).response);
     } catch (e) {
       console.error('GM.xmlHttpREquest error', e);
       throw e;
