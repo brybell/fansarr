@@ -1,0 +1,18 @@
+{
+  "release-type": "node",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "packages": {
+    ".": {
+      "component": "",
+      "package-name": "fansarr",
+      "changelog-path": "CHANGELOG.md"
+    }
+  },
+  "plugins": [
+    {
+      "type": "node-workspace",
+      "component": ""
+    }
+  ]
+}
