@@ -1,17 +1,18 @@
 import meta from './package.json' with { type: 'json' };
 
 export default {
-  name: 'stasharr',
-  description: meta.description,
+  name: 'fansarr',
+  description: meta.description + ' (Fork of Stasharr by enymawse)',
   version: meta.version,
   author: meta.author,
-  source: meta.repository.url,
-  updateURL: meta.repository.url + '/releases/latest/download/stasharr.meta.js',
+  source: 'https://github.com/brybell/fansarr',
+  updateURL:
+    'https://github.com/brybell/fansarr/releases/latest/download/fansarr.meta.js',
   downloadURL:
-    meta.repository.url + '/releases/latest/download/stasharr.user.js',
-  supportURL: meta.repository.url,
+    'https://github.com/brybell/fansarr/releases/latest/download/fansarr.user.js',
+  supportURL: 'https://github.com/brybell/fansarr',
   license: meta.license,
-  match: ['*://stashdb.org/*'],
+  match: ['*://fansdb.cc/*'],
   require: [],
   grant: [
     'GM_registerMenuCommand',

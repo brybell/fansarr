@@ -1,23 +1,23 @@
 import { Config } from '../models/Config';
 import { Whisparr } from '../types/whisparr';
-import { StashDBScene } from './StashDBService';
+import { FansDBScene } from './StashDBService';
 import StashDBService from './StashDBService';
 import WhisparrService from './WhisparrService';
 import ExclusionListService from './ExclusionListService';
 import ToastService from './ToastService';
 
 export interface MissingSceneInfo {
-  stashdbScene: StashDBScene;
+  fansdbScene: FansDBScene;
   reason: 'not_in_whisparr' | 'excluded';
 }
 
 export interface SceneComparisonResult {
-  stashdbScenes: StashDBScene[];
+  fansdbScenes: FansDBScene[];
   whisparrScenes: Whisparr.WhisparrScene[];
   missingScenes: MissingSceneInfo[];
   existingStashIds: Set<string>;
   excludedStashIds: Set<string>;
-  totalStashDBScenes: number;
+  totalFansDBScenes: number;
   totalWhisparrScenes: number;
   totalMissing: number;
 }
@@ -46,8 +46,8 @@ export default class SceneComparisonService {
       }
 
       // Fetch data from both platforms in parallel
-      const [stashdbScenes, whisparrScenes, exclusionMap] = await Promise.all([
-        this.fetchStashDBScenes(filters, options),
+      const [fansdbScenes, whisparrScenes, exclusionMap] = await Promise.all([
+        this.fetchFansDBScenes(filters, options),
         WhisparrService.getAllScenes(config, {
           suppressToasts: options?.suppressToasts,
         }),
@@ -55,7 +55,7 @@ export default class SceneComparisonService {
       ]);
 
       console.log(
-        `Fetched ${stashdbScenes.length} StashDB scenes and ${whisparrScenes.length} Whisparr scenes`,
+        `Fetched ${fansdbScenes.length} FansDB scenes and ${whisparrScenes.length} Whisparr scenes`,
       );
 
       // Create lookup maps for efficient comparison
@@ -67,9 +67,9 @@ export default class SceneComparisonService {
       // Find missing scenes
       const missingScenes: MissingSceneInfo[] = [];
 
-      for (const stashdbScene of stashdbScenes) {
-        const isExcluded = excludedStashIds.has(stashdbScene.id);
-        const existsInWhisparr = existingStashIds.has(stashdbScene.id);
+      for (const fansdbScene of fansdbScenes) {
+        const isExcluded = excludedStashIds.has(fansdbScene.id);
+        const existsInWhisparr = existingStashIds.has(fansdbScene.id);
 
         if (!existsInWhisparr) {
           if (filters.excludeExcluded && isExcluded) {
@@ -77,19 +77,19 @@ export default class SceneComparisonService {
           }
 
           missingScenes.push({
-            stashdbScene,
+            fansdbScene,
             reason: isExcluded ? 'excluded' : 'not_in_whisparr',
           });
         }
       }
 
       const result: SceneComparisonResult = {
-        stashdbScenes,
+        fansdbScenes,
         whisparrScenes,
         missingScenes,
         existingStashIds,
         excludedStashIds,
-        totalStashDBScenes: stashdbScenes.length,
+        totalFansDBScenes: fansdbScenes.length,
         totalWhisparrScenes: whisparrScenes.length,
         totalMissing: missingScenes.length,
       };
@@ -99,7 +99,7 @@ export default class SceneComparisonService {
       );
       if (!options?.suppressToasts) {
         ToastService.showToast(
-          `Found ${result.totalMissing} missing scenes out of ${result.totalStashDBScenes} StashDB scenes`,
+          `Found ${result.totalMissing} missing scenes out of ${result.totalFansDBScenes} FansDB scenes`,
           true,
         );
       }
@@ -121,7 +121,7 @@ export default class SceneComparisonService {
     config: Config,
     filters: ComparisonFilters = {},
     options?: { suppressToasts?: boolean },
-  ): Promise<StashDBScene[]> {
+  ): Promise<FansDBScene[]> {
     const comparison = await this.compareScenes(
       config,
       {
@@ -133,7 +133,7 @@ export default class SceneComparisonService {
 
     return comparison.missingScenes
       .filter((missing) => missing.reason === 'not_in_whisparr')
-      .map((missing) => missing.stashdbScene);
+      .map((missing) => missing.fansdbScene);
   }
 
   /**
@@ -141,7 +141,7 @@ export default class SceneComparisonService {
    */
   static async getSafeToAddSceneIds(
     config: Config,
-    stashdbSceneIds: string[],
+    fansdbSceneIds: string[],
   ): Promise<string[]> {
     const [whisparrScenes, exclusionMap] = await Promise.all([
       WhisparrService.getAllScenes(config),
@@ -155,19 +155,19 @@ export default class SceneComparisonService {
     );
     const excludedStashIds = new Set(exclusionMap.keys());
 
-    return stashdbSceneIds.filter(
-      (sceneId) =>
+    return fansdbSceneIds.filter(
+      (sceneId: string) =>
         !existingStashIds.has(sceneId) && !excludedStashIds.has(sceneId),
     );
   }
 
   /**
-   * Fetch StashDB scenes based on filters
+   * Fetch FansDB scenes based on filters
    */
-  private static async fetchStashDBScenes(
+  private static async fetchFansDBScenes(
     filters: ComparisonFilters,
     options?: { suppressToasts?: boolean },
-  ): Promise<StashDBScene[]> {
+  ): Promise<FansDBScene[]> {
     if (filters.studios && filters.studios.length > 0) {
       return await StashDBService.getAllScenesFromStudios(
         filters.studios,

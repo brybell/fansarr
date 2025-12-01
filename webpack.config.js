@@ -20,7 +20,7 @@ export default {
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: dev ? 'stasharr.dev.user.js' : 'stasharr.user.js',
+    filename: dev ? 'fansarr.dev.user.js' : 'fansarr.user.js',
   },
   devtool: dev ? 'eval' : false,
   module: {

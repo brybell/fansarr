@@ -16,7 +16,7 @@ export class NavbarController extends BaseController {
     document
       .querySelectorAll<HTMLAnchorElement>('.nav-link')
       .forEach((link) => {
-        if (link.text === 'Stasharr') {
+        if (link.text === 'Fansarr') {
           b = false;
           return;
         }
@@ -27,14 +27,14 @@ export class NavbarController extends BaseController {
   initialize(): void {
     console.log('🎯 NavbarController: initialize() called');
 
-    // Check if Stasharr nav link already exists
-    const existingStasharrLink = Array.from(
+    // Check if Fansarr nav link already exists
+    const existingFansarrLink = Array.from(
       document.querySelectorAll<HTMLAnchorElement>('.nav-link'),
-    ).find((link) => link.textContent?.trim() === 'Stasharr');
+    ).find((link) => link.textContent?.trim() === 'Fansarr');
 
-    if (existingStasharrLink) {
+    if (existingFansarrLink) {
       console.log(
-        '🎯 NavbarController: Stasharr nav link already exists, skipping render',
+        '🎯 NavbarController: Fansarr nav link already exists, skipping render',
       );
       return;
     }

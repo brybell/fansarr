@@ -1,34 +1,36 @@
-# Stasharr
+# Fansarr
 
-![GitHub Release](https://img.shields.io/github/v/release/enymawse/stasharr?style=for-the-badge)
-![GitHub License](https://img.shields.io/github/license/enymawse/stasharr?style=for-the-badge)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/enymawse/stasharr/release-please.yml?style=for-the-badge)
+![GitHub Release](https://img.shields.io/github/v/release/brybell/fansarr?style=for-the-badge)
+![GitHub License](https://img.shields.io/github/license/brybell/fansarr?style=for-the-badge)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 [![Built with SolidJS](https://img.shields.io/badge/Built%20with-SolidJS-blue?style=for-the-badge)](https://github.com/solidjs/solid)
+![Fork of Stasharr](https://img.shields.io/badge/Fork%20of-Stasharr-blue?style=for-the-badge)
 
-**A powerful userscript that transforms StashDB into your content management hub by seamlessly integrating with Whisparr v3+ and Stash applications.**
+**A fork of Stasharr that transforms FansDB into your content management hub by seamlessly integrating with Whisparr v3+ and Stash applications.**
 
-Turn StashDB from a simple database into a comprehensive content management system with one-click downloads, bulk operations, and real-time monitoring—all without leaving your browser.
+> **🍴 This is a fork of [Stasharr](https://github.com/enymawse/stasharr) by [enymawse](https://github.com/enymawse), adapted to work with FansDB instead of StashDB. All credit for the original implementation goes to the original author.**
+
+Turn FansDB from a simple database into a comprehensive content management system with one-click downloads, bulk operations, and real-time monitoring—all without leaving your browser.
 
 ## Features
 
 ### **Content Management**
 
-- **One-click Downloads** — Add scenes from StashDB directly to Whisparr with a single click
+- **One-click Downloads** — Add scenes from FansDB directly to Whisparr with a single click
 - **Bulk Operations** — Process entire pages of content with one button press
 - **Smart Status Detection** — Visual indicators show which scenes you already have, are downloading, or are excluded
 - **Copy Scene IDs** — Floating copy button and inline controls for easy scene identification
 
 ### **Seamless Integration**
 
-- **Cross-Platform Navigation** — Jump between StashDB, Whisparr, and Stash with direct links
+- **Cross-Platform Navigation** — Jump between FansDB, Whisparr, and Stash with direct links
 - **Visual Link Indicators** — Smart badges show when links open in new tabs vs. current tab
 - **Reverse Proxy Support** — Full compatibility with `.lan`, `.local`, and custom domain setups
 - **Flexible URL Handling** — Smart validation and path preservation for complex hosting configurations
 
 ### **Studio & Performer Management**
 
-- **Monitor/Unmonitor** — Toggle monitoring for studios and performers directly from StashDB
+- **Monitor/Unmonitor** — Toggle monitoring for studios and performers directly from FansDB
 - **Real-time Updates** — Instant visual feedback when changes are made
 - **Centralized Control** — Manage your entire content pipeline from one interface
 
@@ -45,7 +47,7 @@ Turn StashDB from a simple database into a comprehensive content management syst
 - **Toast Notifications** — Reserved for quick feedback; bulk workflows rely on the modal
 - **Responsive Design** — Works seamlessly across all screen sizes
 - **Accessibility** — Full keyboard navigation and screen reader support
-- **Modern UI** — Clean, intuitive interface that integrates perfectly with StashDB
+- **Modern UI** — Clean, intuitive interface that integrates perfectly with FansDB
 
 ### **Technical Features**
 
@@ -65,13 +67,12 @@ Turn StashDB from a simple database into a comprehensive content management syst
 ### Quick Install
 
 1. **Install browser extension:**
-
    - [Tampermonkey](https://www.tampermonkey.net/) (recommended)
    - [Violentmonkey](https://violentmonkey.github.io/) (alternative)
 
-2. **Install Stasharr:**
+2. **Install Fansarr:**
 
-   Click here → [`stasharr.user.js`](https://github.com/enymawse/stasharr/releases/latest/download/stasharr.user.js)
+   Click here → [`fansarr.user.js`](https://github.com/brybell/fansarr/releases/latest/download/fansarr.user.js)
 
    Your userscript manager will prompt for installation. Click **Install** to proceed.
 
@@ -82,8 +83,8 @@ Turn StashDB from a simple database into a comprehensive content management syst
 
 ### Initial Setup
 
-1. **Navigate to [StashDB](https://stashdb.org)**
-2. **Click "Stasharr"** in the top navigation bar
+1. **Navigate to [FansDB](https://fansdb.cc)**
+2. **Click "Fansarr"** in the top navigation bar
 3. **Configure your settings:**
 
 ![Settings Modal](https://github.com/user-attachments/assets/8748c1c0-7029-47d4-a9e3-7f68957b07af)
@@ -136,7 +137,7 @@ When you first configure Whisparr/Stash domains, your browser will request permi
 
 ### Scene Management
 
-Navigate to any scene on StashDB to see Stasharr's enhanced interface:
+Navigate to any scene on FansDB to see Fansarr's enhanced interface:
 
 ![Scene Interface](https://github.com/user-attachments/assets/52b27251-2b08-4f2b-9120-72c8eaa3bc23)
 ![Scene Interface](https://github.com/user-attachments/assets/95be09d1-0ff8-4db7-9698-9494c87bbeaf)
@@ -154,13 +155,13 @@ Navigate to any scene on StashDB to see Stasharr's enhanced interface:
 - **Add Scene** — One-click addition to Whisparr
 - **View in Whisparr** — Direct link to scene in your Whisparr instance
 - **View in Stash** — Direct link to scene in your Stash instance (if configured)
-- **Copy Scene ID** — Copy StashDB scene ID to clipboard
+- **Copy Scene ID** — Copy FansDB scene ID to clipboard
 
 ### Bulk Operations
 
 ![Bulk Actions](docs/images/bulk-actions-dropdown.png)
 
-On any StashDB page showing multiple scenes, the Stasharr Actions dropdown provides three bulk tools:
+On any FansDB page showing multiple scenes, the Fansarr Actions dropdown provides three bulk tools:
 
 - **Add All on Page:** Adds all available scenes on the current page to Whisparr
 - **Search All on Page:** Triggers a search for all monitored scenes on the current page in Whisparr
@@ -184,7 +185,7 @@ Visit any studio or performer page to:
 
 ### Settings Management
 
-Access settings anytime by clicking **"Stasharr"** in the top navigation. Settings are:
+Access settings anytime by clicking **"Fansarr"** in the top navigation. Settings are:
 
 - **Automatically validated** as you type
 - **Saved instantly** when valid
@@ -198,12 +199,12 @@ Access settings anytime by clicking **"Stasharr"** in the top navigation. Settin
 #### **Settings Won't Save**
 
 - Verify your Whisparr instance is accessible from your browser
-- Check that the API key is correct (found in Whisparr → Settings → General)
+- Check that API key is correct (found in Whisparr → Settings → General)
 - Ensure no firewall is blocking the connection
 
 #### **Buttons Not Appearing**
 
-- Refresh the StashDB page
+- Refresh FansDB page
 - Check browser console for errors (F12 → Console)
 - Verify userscript is enabled in your extension
 
@@ -229,7 +230,7 @@ Access settings anytime by clicking **"Stasharr"** in the top navigation. Settin
 
 #### **Whisparr Version Requirements**
 
-Stasharr requires **Whisparr v3+**. If you're running v2, update with:
+Fansarr requires **Whisparr v3+**. If you're running v2, update with:
 
 ```bash
 docker pull ghcr.io/hotio/whisparr:v3
@@ -237,9 +238,9 @@ docker pull ghcr.io/hotio/whisparr:v3
 
 #### **Reporting Bugs**
 
-If you encounter issues, please [create a bug report](https://github.com/enymawse/stasharr/issues/new/choose) with:
+ If you encounter issues, please [create a bug report](https://github.com/brybell/fansarr/issues/new/choose) with:
 
-- **Stasharr version** — Found in userscript manager
+- **Fansarr version** — Found in userscript manager
 - **Browser & version** — Chrome 120, Firefox 119, etc.
 - **Whisparr version** — Found in Whisparr → System → Status
 - **Error messages** — From browser console (F12 → Console)
@@ -269,19 +270,21 @@ See [LICENSE](LICENSE) for details.
 
 ## Credits
 
-**Created by [enymawse](https://github.com/enymawse)**
+**Original Stasharr created by [enymawse](https://github.com/enymawse)**
+
+_This is a fork of Stasharr adapted for FansDB. All credit for the original implementation goes to enymawse._
 
 _Original inspiration from [randybudweiser's stash2whisparr](https://github.com/randybudweiser/stash2whisparr)_
 
 ## Support
 
-If Stasharr has improved your content management workflow:
+If Fansarr has improved your content management workflow:
 
 ⭐ **Star this repository** to show your support  
 🐛 **Report issues** to help improve the project  
 💡 **Suggest features** for future development  
-🤝 **Contribute** to make Stasharr even better
+🤝 **Contribute** to make Fansarr even better
 
 ---
 
-_Transform your StashDB experience today with Stasharr — because managing your content library should be effortless._
+_Transform your FansDB experience today with Fansarr — because managing your content library should be effortless._

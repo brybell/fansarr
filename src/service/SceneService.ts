@@ -16,6 +16,7 @@ import WhisparrService from './WhisparrService';
 import SceneComparisonService from './SceneComparisonService';
 import { StashDBScene } from './StashDBService';
 import { SceneButtonRefreshService } from './SceneButtonRefreshService';
+import { MetadataTransformer } from './MetadataTransformer';
 
 interface ProgressTracker {
   updateItem: (
@@ -218,25 +219,77 @@ export default class SceneService extends ServiceBase {
   /**
    * Adds a scene to Whisparr by sending a POST request with the payload details to the underlying API.
    * @param {Config} config The configuration object containing API details and user preferences.
-   * @param {Whisparr.WhisparrScene} scene The Scene object to add to Whisparr.
+   * @param {Whisparr.WhisparrScene | StashDBScene} scene The Scene object to add to Whisparr.
    * @returns {Promise<Whisparr.WhisparrScene | null>} The Scene object if it was successfully created in
    * Whisparr otherwise null.
    */
   static async addScene(
     config: Config,
-    scene: Whisparr.WhisparrScene,
+    scene: Whisparr.WhisparrScene | StashDBScene,
     options?: { suppressToasts?: boolean },
   ): Promise<Whisparr.WhisparrScene | null> {
     const endpoint = 'movie';
-    const payload = new ScenePayloadBuilder()
-      .setForeignId(scene.foreignId)
-      .setMonitored(true)
-      .setTitle(scene.title)
-      .setQualityProfileId(config.qualityProfile)
-      .setRootFolderPath(config.rootFolderPath)
-      .setSearchForMovie(config.searchForNewMovie)
-      .setTags(config.tags)
-      .build();
+    let payload;
+
+    // Check if this is a FansDB scene (StashDBScene type) or Whisparr scene
+    if (
+      'foreignId' in scene &&
+      scene.foreignId &&
+      scene.foreignId.startsWith('fansdb:')
+    ) {
+      // This is already a transformed FansDB scene
+      payload = new ScenePayloadBuilder()
+        .setForeignId(scene.foreignId)
+        .setMonitored(true)
+        .setTitle(scene.title)
+        .setQualityProfileId(config.qualityProfile)
+        .setRootFolderPath(config.rootFolderPath)
+        .setSearchForMovie(config.searchForNewMovie)
+        .setTags(config.tags)
+        .build();
+    } else if ('id' in scene && !('foreignId' in scene)) {
+      // This is a FansDB scene that needs transformation
+      const validation = MetadataTransformer.validateSceneData(
+        scene as StashDBScene,
+      );
+      if (!validation.isValid) {
+        console.warn('Scene validation failed:', validation.issues);
+        if (!options?.suppressToasts) {
+          ToastService.showToast(
+            `Scene validation failed: ${validation.issues.join(', ')}`,
+            false,
+          );
+        }
+      }
+
+      const transformedPayload =
+        MetadataTransformer.transformFansDBSceneToWhisparr(
+          scene as StashDBScene,
+          config,
+        );
+
+      payload = new ScenePayloadBuilder()
+        .setForeignId(transformedPayload.foreignId)
+        .setMonitored(transformedPayload.monitored)
+        .setTitle(transformedPayload.title)
+        .setQualityProfileId(transformedPayload.qualityProfileId)
+        .setRootFolderPath(transformedPayload.rootFolderPath)
+        .setSearchForMovie(transformedPayload.addOptions.searchForMovie)
+        .setTags(transformedPayload.tags)
+        .build();
+    } else {
+      // This is a standard Whisparr scene
+      payload = new ScenePayloadBuilder()
+        .setForeignId(scene.foreignId)
+        .setMonitored(true)
+        .setTitle(scene.title)
+        .setQualityProfileId(config.qualityProfile)
+        .setRootFolderPath(config.rootFolderPath)
+        .setSearchForMovie(config.searchForNewMovie)
+        .setTags(config.tags)
+        .build();
+    }
+
     let response;
     try {
       response = await ServiceBase.request(config, endpoint, 'POST', payload);

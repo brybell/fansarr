@@ -1,7 +1,7 @@
 import ServiceBase from './ServiceBase';
 import ToastService from './ToastService';
 
-export interface StashDBScene {
+export interface FansDBScene {
   id: string;
   title: string;
   release_date?: string;
@@ -21,7 +21,10 @@ export interface StashDBScene {
   }>;
 }
 
-export interface StashDBQueryInput {
+// Keep backward compatibility
+export interface StashDBScene extends FansDBScene {}
+
+export interface FansDBQueryInput {
   text?: string;
   studios?: string[];
   performers?: string[];
@@ -32,15 +35,21 @@ export interface StashDBQueryInput {
   direction?: 'ASC' | 'DESC';
 }
 
-export interface StashDBScenesResponse {
+// Keep backward compatibility
+export interface StashDBQueryInput extends FansDBQueryInput {}
+
+export interface FansDBScenesResponse {
   queryScenes: {
-    scenes: StashDBScene[];
+    scenes: FansDBScene[];
     count: number;
   };
 }
 
+// Keep backward compatibility
+export interface StashDBScenesResponse extends FansDBScenesResponse {}
+
 export default class StashDBService extends ServiceBase {
-  private static readonly STASHDB_ENDPOINT = 'https://stashdb.org/graphql';
+  private static readonly STASHDB_ENDPOINT = 'https://fansdb.cc/graphql';
   private static readonly ITEMS_PER_PAGE = 100;
 
   /**
@@ -50,7 +59,7 @@ export default class StashDBService extends ServiceBase {
     const cookies = document.cookie.split(';');
     for (const cookie of cookies) {
       const [name, value] = cookie.trim().split('=');
-      if (name === 'stashbox') {
+      if (name === 'fansbox') {
         return value;
       }
     }
@@ -69,7 +78,7 @@ export default class StashDBService extends ServiceBase {
       const stashboxCookie = this.getStashboxCookie();
       if (!stashboxCookie) {
         throw new Error(
-          'StashDB authentication cookie not found. Please log into StashDB first.',
+          'FansDB authentication cookie not found. Please log into FansDB first.',
         );
       }
 
@@ -77,7 +86,7 @@ export default class StashDBService extends ServiceBase {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Cookie: `stashbox=${stashboxCookie}`,
+          Cookie: `fansbox=${stashboxCookie}`,
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -87,13 +96,13 @@ export default class StashDBService extends ServiceBase {
       });
 
       if (!response.ok) {
-        throw new Error(`StashDB API error: ${response.statusText}`);
+        throw new Error(`FansDB API error: ${response.statusText}`);
       }
 
       const result = await response.json();
 
       if (result.errors) {
-        console.error('StashDB GraphQL errors:', result.errors);
+        console.error('FansDB GraphQL errors:', result.errors);
         throw new Error(
           `GraphQL errors: ${result.errors.map((e: { message: string }) => e.message).join(', ')}`,
         );
@@ -101,9 +110,9 @@ export default class StashDBService extends ServiceBase {
 
       return result.data;
     } catch (error) {
-      console.error('StashDB query failed:', error);
+      console.error('FansDB query failed:', error);
       if (!options?.suppressToasts) {
-        ToastService.showToast('Failed to query StashDB', false);
+        ToastService.showToast('Failed to query FansDB', false);
       }
       throw error;
     }
