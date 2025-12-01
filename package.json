@@ -48,7 +48,7 @@
     "commitizen": "^4.3.1",
     "css-loader": "^7.1.2",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.35.0",
+    "eslint": "^9.39.1",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-solid": "^0.14.5",
