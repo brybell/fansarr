@@ -33,7 +33,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
-          versioning-strategy: default
+          config-file: .github/release-please-config.json
 
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
