@@ -22,7 +22,7 @@ export interface FansDBScene {
 }
 
 // Keep backward compatibility
-export interface StashDBScene extends FansDBScene {}
+export type StashDBScene = FansDBScene;
 
 export interface FansDBQueryInput {
   text?: string;
@@ -36,7 +36,7 @@ export interface FansDBQueryInput {
 }
 
 // Keep backward compatibility
-export interface StashDBQueryInput extends FansDBQueryInput {}
+export type StashDBQueryInput = FansDBQueryInput;
 
 export interface FansDBScenesResponse {
   queryScenes: {
@@ -46,7 +46,7 @@ export interface FansDBScenesResponse {
 }
 
 // Keep backward compatibility
-export interface StashDBScenesResponse extends FansDBScenesResponse {}
+export type StashDBScenesResponse = FansDBScenesResponse;
 
 export default class StashDBService extends ServiceBase {
   private static readonly STASHDB_ENDPOINT = 'https://fansdb.cc/graphql';
