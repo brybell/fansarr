@@ -1,5 +1,3 @@
-import '@violentmonkey/types';
-
 /** eslint-disable @typescript-eslint/no-unused-vars */
 export namespace Whisparr {
   type OriginalLanguage = {

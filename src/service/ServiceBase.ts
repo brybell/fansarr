@@ -2,6 +2,7 @@
 
 import { Config } from '../models/Config';
 import { responseStatusCodeOK } from '../util/util';
+import { TampermonkeyResponse } from '../types/tampermonkey';
 
 /**
  * Constructs the full API URL for a given endpoint using the configuration.
@@ -38,7 +39,7 @@ export default class ServiceBase {
    * @param {string} [method="GET"] - The HTTP method (GET, POST, etc.).
    * @param {object} [body] - Optional body for POST/PUT requests.
    * @param {object} [additionalHeaders={}] - Additional headers for the request.
-   * @returns {Promise<VMScriptResponseObject<any>>} - The response from the API call.
+   * @returns {Promise<TampermonkeyResponse<any>>} - The response from the API call.
    * @throws {Error} - If the request fails or returns a non-OK response.
    */
   /* eslint no-undef: off */
@@ -48,28 +49,15 @@ export default class ServiceBase {
     method: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' = 'GET',
     body?: object,
     additionalHeaders = {},
-  ): Promise<VMScriptResponseObject<any>> {
+  ): Promise<TampermonkeyResponse<any>> {
     const uri = buildApiUrl(config, endpoint);
     const headers = getDefaultHeaders(config, additionalHeaders);
 
-    let response: VMScriptResponseObject<any> = {
-      status: 0,
-      statusText: '',
-      readyState: 0,
-      responseHeaders: '',
-      response: {},
-      responseText: undefined,
-      responseXML: null,
-      finalUrl: '',
-    };
-    const gmDetails: VMScriptGMXHRDetails<any> = {
+    const gmDetails: any = {
       url: uri,
       headers: headers,
       method: method,
       responseType: 'json',
-      onload: (r: VMScriptResponseObject<any>) => {
-        response = r;
-      },
     };
 
     if (body) {
@@ -77,7 +65,7 @@ export default class ServiceBase {
     }
 
     try {
-      await GM.xmlHttpRequest(gmDetails);
+      const response = await GM.xmlHttpRequest(gmDetails);
       if (responseStatusCodeOK(response.status)) {
         return response;
       } else {
