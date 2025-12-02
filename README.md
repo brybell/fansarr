@@ -238,7 +238,7 @@ docker pull ghcr.io/hotio/whisparr:v3
 
 #### **Reporting Bugs**
 
- If you encounter issues, please [create a bug report](https://github.com/brybell/fansarr/issues/new/choose) with:
+If you encounter issues, please [create a bug report](https://github.com/brybell/fansarr/issues/new/choose) with:
 
 - **Fansarr version** — Found in userscript manager
 - **Browser & version** — Chrome 120, Firefox 119, etc.
@@ -286,3 +286,5 @@ If Fansarr has improved your content management workflow:
 🤝 **Contribute** to make Fansarr even better
 
 ---
+
+# Test release-please fix
