@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { Config } from '../../models/Config';
 import StashServiceBase from './StashServiceBase';
 import { StashScene, StashStats } from '../../types/stash';

@@ -20,7 +20,6 @@ import { StashIdToSceneCardAndStatusMap } from '../types/stasharr';
 import { SceneStatus, SceneStatusType } from '../enums/SceneStatus';
 import { Stasharr } from '../enums/Stasharr';
 import { StashDB } from '../enums/StashDB';
-import { parseInt } from 'lodash';
 
 library.add(
   faChevronDown,

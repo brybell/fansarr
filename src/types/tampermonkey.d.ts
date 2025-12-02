@@ -5,7 +5,7 @@
  * These types replace the removed Violentmonkey types
  */
 
-export interface TampermonkeyResponse<T = any> {
+export interface TampermonkeyResponse<T = unknown> {
   response: T;
   responseHeaders: string;
   status: number;
@@ -14,20 +14,20 @@ export interface TampermonkeyResponse<T = any> {
   responseText: string | undefined;
   responseXML: Document | null;
   finalUrl: string;
-  context?: any;
+  context?: unknown;
   lengthComputable?: boolean;
   loaded?: number;
   total?: number;
 }
 
-export interface TampermonkeyRequestDetails<T = any> {
+export interface TampermonkeyRequestDetails<T = unknown> {
   url: string;
   method?: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE';
-  headers?: { [key: string]: string };
+  headers?: Record<string, string>;
   data?: string;
   responseType?: 'json' | 'blob' | 'arraybuffer' | 'stream';
   timeout?: number;
-  context?: any;
+  context?: unknown;
   overrideMimeType?: string;
   anonymous?: boolean;
   fetch?: boolean;
@@ -51,12 +51,12 @@ export interface TampermonkeyRequestDetails<T = any> {
 declare global {
   interface Window {
     GM: {
-      xmlHttpRequest: <T = any>(
+      xmlHttpRequest: <T = unknown>(
         details: TampermonkeyRequestDetails<T>,
       ) => Promise<TampermonkeyResponse<T>>;
       setClipboard: (text: string, info?: string) => void;
-      getValue: (key: string, defaultValue?: any) => Promise<any>;
-      setValue: (key: string, value: any) => Promise<void>;
+      getValue: (key: string, defaultValue?: unknown) => Promise<unknown>;
+      setValue: (key: string, value: unknown) => Promise<void>;
       registerMenuCommand: (
         name: string,
         callback: () => void,
@@ -74,8 +74,8 @@ declare global {
 
     // Global functions (also available as GM.*)
     GM_setClipboard: (text: string, info?: string) => void;
-    GM_getValue: (key: string, defaultValue?: any) => Promise<any>;
-    GM_setValue: (key: string, value: any) => Promise<void>;
+    GM_getValue: (key: string, defaultValue?: unknown) => Promise<unknown>;
+    GM_setValue: (key: string, value: unknown) => Promise<void>;
     GM_registerMenuCommand: (
       name: string,
       callback: () => void,

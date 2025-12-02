@@ -1,6 +1,6 @@
 import { Stasharr } from '../enums/Stasharr';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { parseInt } from 'lodash';
+
 import { StashDB } from '../enums/StashDB';
 import { StashIdToSceneCardAndStatusMap } from '../types/stasharr';
 import { extractStashIdFromSceneCard, rehydrateSceneCards } from '../util/util';

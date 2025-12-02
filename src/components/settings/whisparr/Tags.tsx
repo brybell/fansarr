@@ -3,7 +3,7 @@ import { useSettings } from '../../../contexts/useSettings';
 import { Stasharr } from '../../../enums/Stasharr';
 import { createMemo, createResource, For } from 'solid-js';
 import WhisparrService from '../../../service/WhisparrService';
-import { parseInt } from 'lodash';
+
 import { ReactiveStoreFactory } from '../../../factory/ReactiveStoreFactory';
 
 const Tags = () => {
