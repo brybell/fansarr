@@ -1,7 +1,7 @@
 import { SceneStatusType } from './SceneStatus';
 import { StashDB } from './StashDB';
 
-const stasharrPrefix = 'stasharr';
+const stasharrPrefix = 'fansarr';
 const attrPrefix = 'data';
 const sceneStatus = `${attrPrefix}-${stasharrPrefix}-scenestatus`;
 const cardButton = `${stasharrPrefix}-card-button`;
@@ -28,7 +28,7 @@ const floatingCopyButton = `${stasharrPrefix}-floating-copy-button`;
 const copyCardButton = `copy-card-button`;
 const openLinksInNewTab = `${stasharrPrefix}-openLinksInNewTab`;
 
-export const Stasharr = {
+export const Fansarr = {
   DataAttribute: {
     SceneStatus: sceneStatus,
   },
@@ -81,8 +81,8 @@ export const Stasharr = {
       StashApiKey: `#${stashApiKey}`,
     },
     SceneCardWithNoStatus: () =>
-      `${StashDB.DOMSelector.SceneCard}:not([${Stasharr.DataAttribute.SceneStatus}])`,
+      `${StashDB.DOMSelector.SceneCard}:not([${Fansarr.DataAttribute.SceneStatus}])`,
     SceneCardByButtonStatus: (status: SceneStatusType) =>
-      `${StashDB.DOMSelector.SceneCard}:has([${Stasharr.DataAttribute.SceneStatus}='${status}'])`,
+      `${StashDB.DOMSelector.SceneCard}:has([${Fansarr.DataAttribute.SceneStatus}='${status}'])`,
   },
 };

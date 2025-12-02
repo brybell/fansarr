@@ -18,7 +18,7 @@ import StashDBService from '../service/StashDBService';
 import { extractStashIdFromSceneCard, rehydrateSceneCards } from '../util/util';
 import { StashIdToSceneCardAndStatusMap } from '../types/stasharr';
 import { SceneStatus, SceneStatusType } from '../enums/SceneStatus';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { StashDB } from '../enums/StashDB';
 
 library.add(
@@ -88,7 +88,7 @@ const BulkActionDropdown = () => {
 
       // Show success notification for completed operation
       FeedbackService.showNotification(
-        'Stasharr: Add All Missing Complete',
+        'Fansarr: Add All Missing Complete',
         `Added ${results.totalAdded} scenes, ${results.failed.length} failed`,
       );
 
@@ -124,7 +124,7 @@ const BulkActionDropdown = () => {
     );
 
     const addableSceneCards = document.querySelectorAll<HTMLElement>(
-      Stasharr.DOMSelector.SceneCardByButtonStatus(SceneStatus.NOT_IN_WHISPARR),
+      Fansarr.DOMSelector.SceneCardByButtonStatus(SceneStatus.NOT_IN_WHISPARR),
     );
 
     const stashIdtoSceneCardAndStatusMap: StashIdToSceneCardAndStatusMap =
@@ -136,8 +136,8 @@ const BulkActionDropdown = () => {
       const stashId = extractStashIdFromSceneCard(node);
       if (stashId) {
         const sceneStatusRaw = node
-          .querySelector(Stasharr.DOMSelector.CardButton)
-          ?.getAttribute(Stasharr.DataAttribute.SceneStatus);
+          .querySelector(Fansarr.DOMSelector.CardButton)
+          ?.getAttribute(Fansarr.DataAttribute.SceneStatus);
         const sceneStatusNumber = parseInt(sceneStatusRaw || '-1', 10);
 
         if (sceneStatusNumber > -1) {
@@ -220,7 +220,7 @@ const BulkActionDropdown = () => {
 
       // Show notification
       FeedbackService.showNotification(
-        'Stasharr: Add All Complete',
+        'Fansarr: Add All Complete',
         `Added ${sceneMap.size} scenes from page ${pageNumber + 1}`,
       );
     } catch (error) {
@@ -257,7 +257,7 @@ const BulkActionDropdown = () => {
     );
 
     const searchableSceneCards = document.querySelectorAll<HTMLElement>(
-      Stasharr.DOMSelector.SceneCardByButtonStatus(
+      Fansarr.DOMSelector.SceneCardByButtonStatus(
         SceneStatus.EXISTS_AND_NO_FILE,
       ),
     );
@@ -421,7 +421,7 @@ const BulkActionDropdown = () => {
             data-bs-toggle="tooltip"
             data-bs-title="Bulk actions for scenes"
           >
-            <FontAwesomeIcon icon="fa-solid fa-download" /> Stasharr Actions{' '}
+            <FontAwesomeIcon icon="fa-solid fa-download" /> Fansarr Actions{' '}
             <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
           </Dropdown.Toggle>
 
