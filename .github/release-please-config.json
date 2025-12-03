@@ -1,13 +1,13 @@
 {
   "release-type": "node",
-  "prerelease": true,
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     ".": {
       "component": "",
       "package-name": "fansarr",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "versioning": "prerelease"
     }
   },
   "include-component-in-tag": false,
