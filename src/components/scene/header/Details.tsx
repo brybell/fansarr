@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from 'solid-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { filesize } from 'filesize';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import SceneService from '../../../service/SceneService';
 import WhisparrService from '../../../service/WhisparrService';
 import { Config } from '../../../models/Config';
@@ -43,7 +43,7 @@ const Details = (props: { config: Config; stashId: string }) => {
 
   return (
     <Show when={sceneDetails() && qualityProfiles()}>
-      <div id={Stasharr.ID.HeaderDetails} style={'text-align: right'}>
+      <div id={Fansarr.ID.HeaderDetails} style={'text-align: right'}>
         <Show when={stashSceneDetails()}>
           <ExternalLink href={stashLink()} config={props.config}>
             <FontAwesomeIcon icon="fa-solid fa-arrow-up-right-from-square" />{' '}

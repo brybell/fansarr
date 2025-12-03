@@ -1,13 +1,13 @@
-import { Stasharr } from '../../enums/Stasharr';
+import { Fansarr } from '../../enums/Stasharr';
 
 const NavbarLink = () => (
   <a
     class="nav-link"
     data-bs-toggle="modal"
-    data-bs-target={Stasharr.DOMSelector.SettingsModal}
+    data-bs-target={Fansarr.DOMSelector.SettingsModal}
     href="#"
   >
-    Stasharr
+    Fansarr
   </a>
 );
 

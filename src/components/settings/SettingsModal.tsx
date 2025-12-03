@@ -9,7 +9,7 @@ import { createStore } from 'solid-js/store';
 import { Config } from '../../models/Config';
 import WhisparrService from '../../service/WhisparrService';
 import { SettingsContext } from '../../contexts/useSettings';
-import { Stasharr } from '../../enums/Stasharr';
+import { Fansarr } from '../../enums/Stasharr';
 import { ReactiveStoreFactory } from '../../factory/ReactiveStoreFactory';
 import WhisparrSettings from './whisparr/WhisparrSettings';
 import StashSettings from './stashapp/StashSettings';
@@ -44,16 +44,16 @@ function SettingsModal(props: { config: Config }) {
   return (
     <SettingsContext.Provider value={{ store, setStore }}>
       <a class="nav-link" data-bs-toggle="modal" onclick={handleOpen} href="#">
-        Stasharr
+        Fansarr
       </a>
       <Modal
         show={show()}
         onHide={handleClose}
-        id={Stasharr.ID.SettingsModal}
+        id={Fansarr.ID.SettingsModal}
         fullscreen={true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Stasharr Settings</Modal.Title>
+          <Modal.Title>Fansarr Settings</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Tab.Container id="left-tabs" defaultActiveKey="general">

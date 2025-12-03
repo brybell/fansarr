@@ -71,12 +71,12 @@ export class ControllerManager {
     });
     this.controllers = [];
 
-    // Clean up stale Stasharr DOM elements that might be disconnected from SolidJS
+    // Clean up stale Fansarr DOM elements that might be disconnected from SolidJS
     this.cleanupStaleElements();
   }
 
   /**
-   * Remove stale Stasharr elements that are no longer connected to SolidJS components
+   * Remove stale Fansarr elements that are no longer connected to SolidJS components
    */
   private static cleanupStaleElements(): void {
     console.log('ControllerManager: Starting comprehensive cleanup...');
@@ -84,26 +84,34 @@ export class ControllerManager {
     // More aggressive cleanup for React-based SPAs
     const stasharrSelectors = [
       '[id*="stasharr"]', // Any element with 'stasharr' in ID
+      '[id*="fansarr"]', // Any element with 'fansarr' in ID
       '[class*="stasharr"]', // Any element with 'stasharr' in class
+      '[class*="fansarr"]', // Any element with 'fansarr' in class
       '#stasharr-actions-dropdown', // Specific dropdown ID
+      '#fansarr-actions-dropdown', // Specific dropdown ID
       '.dropdown-menu', // Bootstrap dropdowns (may be orphaned)
       '[data-bs-toggle="tooltip"]', // Tooltip elements
     ];
 
     let totalRemoved = 0;
 
-    // Also clean up duplicate Stasharr nav links
+    // Also clean up duplicate Fansarr/Fansarr nav links
     const stasharrNavLinks = Array.from(
       document.querySelectorAll<HTMLAnchorElement>('.nav-link'),
-    ).filter((link) => link.textContent?.trim() === 'Stasharr');
+    ).filter((link) => {
+      const text = link.textContent?.trim();
+      return text === 'Fansarr' || text === 'Fansarr';
+    });
 
     if (stasharrNavLinks.length > 1) {
       console.log(
-        `ControllerManager: Found ${stasharrNavLinks.length} duplicate Stasharr nav links, removing extras`,
+        `ControllerManager: Found ${stasharrNavLinks.length} duplicate Fansarr/Fansarr nav links, removing extras`,
       );
       // Keep the first one, remove the rest
       stasharrNavLinks.slice(1).forEach((link) => {
-        console.log('ControllerManager: Removing duplicate Stasharr nav link');
+        console.log(
+          'ControllerManager: Removing duplicate Fansarr/Fansarr nav link',
+        );
         link.remove();
         totalRemoved++;
       });
@@ -111,18 +119,21 @@ export class ControllerManager {
     stasharrSelectors.forEach((selector) => {
       const elements = document.querySelectorAll(selector);
       elements.forEach((element) => {
-        // Be more aggressive - remove any element that looks Stasharr-related
-        const isStasharrElement =
+        // Be more aggressive - remove any element that looks Fansarr/Fansarr-related
+        const isFansarrElement =
           element.id?.includes('stasharr') ||
-          Array.from(element.classList || []).some((cls) =>
-            cls.includes('stasharr'),
+          element.id?.includes('fansarr') ||
+          Array.from(element.classList || []).some(
+            (cls) => cls.includes('stasharr') || cls.includes('fansarr'),
           ) ||
           element.closest('.scenes-list') ||
-          // Check if it's a Bootstrap dropdown that might be orphaned from Stasharr
+          // Check if it's a Bootstrap dropdown that might be orphaned from Fansarr/Fansarr
           (element.classList?.contains('dropdown-menu') &&
-            element.previousElementSibling?.id?.includes('stasharr'));
+            element.previousElementSibling?.id?.includes('stasharr')) ||
+          (element.classList?.contains('dropdown-menu') &&
+            element.previousElementSibling?.id?.includes('fansarr'));
 
-        if (isStasharrElement) {
+        if (isFansarrElement) {
           console.log(
             `ControllerManager: Removing stale element: ${element.tagName}#${element.id || 'no-id'}.${Array.from(element.classList || []).join('.')}`,
           );

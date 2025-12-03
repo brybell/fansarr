@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { FontAwesomeIcon } from 'solid-fontawesome';
 
 const StashApiKey = () => {
@@ -10,7 +10,7 @@ const StashApiKey = () => {
     setStore('stashApiKey', value === '' ? null : value);
   };
 
-  const title = 'Locally hosted StashApp ApiKey';
+  const title = 'Locally hosted FansDB ApiKey';
 
   const toggleKeyVisibility = () => {
     if (iconString().includes('slash')) setIconString('fa-solid fa-eye');
@@ -23,7 +23,7 @@ const StashApiKey = () => {
     <div class="form-floating mb-3">
       <input
         class="form-control"
-        id={Stasharr.ID.Modal.StashApiKey}
+        id={Fansarr.ID.Modal.StashApiKey}
         name="apikey"
         placeholder=""
         data-bs-toggle="tooltip"
@@ -33,7 +33,7 @@ const StashApiKey = () => {
         value={store.stashApiKey}
         onChange={(e) => handleChange(e.target.value)}
       />
-      <label for={Stasharr.ID.Modal.StashApiKey}>
+      <label for={Fansarr.ID.Modal.StashApiKey}>
         Locally hosted StashApp ApiKey
       </label>
       <button

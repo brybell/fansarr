@@ -1,5 +1,5 @@
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import SmartUrlInput from '../common/SmartUrlInput';
 import { createMemo } from 'solid-js';
 
@@ -25,7 +25,7 @@ const WhisparrUrlInput = () => {
         onChange={handleDomainChange}
         serviceType="whisparr"
         useHttps={store.protocol}
-        id={Stasharr.ID.Modal.Domain}
+        id={Fansarr.ID.Modal.Domain}
         placeholder="Enter your Whisparr address"
         required={true}
       />
@@ -35,12 +35,12 @@ const WhisparrUrlInput = () => {
         <input
           class="form-check-input"
           role="switch"
-          id={Stasharr.ID.Modal.Protocol}
+          id={Fansarr.ID.Modal.Protocol}
           type="checkbox"
           checked={store.protocol}
           onChange={(e) => handleProtocolChange(e.target.checked)}
         />
-        <label class="form-check-label" for={Stasharr.ID.Modal.Protocol}>
+        <label class="form-check-label" for={Fansarr.ID.Modal.Protocol}>
           Use HTTPS
           <small class="text-muted d-block">
             Enable if you have configured Whisparr with valid SSL certificates

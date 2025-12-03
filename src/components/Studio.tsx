@@ -1,7 +1,7 @@
 import { createResource, Match, Switch } from 'solid-js';
 import { Config } from '../models/Config';
 import StudioService from '../service/StudioService';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { faBookmark, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as faBookmarkEmpty } from '@fortawesome/free-regular-svg-icons';
 import { Whisparr } from '../types/whisparr';
@@ -40,7 +40,7 @@ function Studio(props: { config: Config; stashId: string }) {
           <button
             class="FavoriteStar ps-2 btn btn-link stasharr-studio-add"
             type="button"
-            id={Stasharr.ID.StudioAdd}
+            id={Fansarr.ID.StudioAdd}
             onclick={addStudio}
           >
             <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
@@ -50,7 +50,7 @@ function Studio(props: { config: Config; stashId: string }) {
           <button
             class="FavoriteStar ps-2 btn btn-link"
             type="button"
-            id={Stasharr.ID.StudioMonitor}
+            id={Fansarr.ID.StudioMonitor}
             onclick={() => toggleMonitor(studioDetails()!)}
             data-bs-toggle="tooltip"
             data-bs-title={`${studioDetails()?.monitored ? 'Unmonitor' : 'Monitor'} ${studioDetails()?.title} in Whisparr`}

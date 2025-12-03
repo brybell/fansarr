@@ -28,7 +28,7 @@ const VersionAlert = () => {
   return (
     <Show when={version() < 3}>
       <Alert variant="danger">
-        Stasharr has been purpose built to work with Whisparr's V3 API. Please
+        Fansarr has been purpose built to work with Whisparr's V3 API. Please
         consult{' '}
         <ExternalLink href="https://wiki.servarr.com/whisparr" config={store}>
           Whisparr's Wiki

@@ -2,7 +2,7 @@ import { createSignal, Show } from 'solid-js';
 import { FontAwesomeIcon } from 'solid-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 
 library.add(faCopy, faCheck);
 
@@ -42,7 +42,7 @@ const FloatingCopyButton = (props: FloatingCopyButtonProps) => {
       onClick={handleClick}
       title={copied() ? 'Copied!' : `Copy Stash ID: ${props.textToCopy}`}
       data-bs-toggle="tooltip"
-      id={Stasharr.ID.FloatingCopyButton}
+      id={Fansarr.ID.FloatingCopyButton}
     >
       <Show
         when={copied()}

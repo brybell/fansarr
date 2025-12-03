@@ -1,7 +1,7 @@
 import { createResource, Match, Switch } from 'solid-js';
 import { Config } from '../models/Config';
 import PerformerService from '../service/PerformerService';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { faBookmark, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as faBookmarkEmpty } from '@fortawesome/free-regular-svg-icons';
 import { Whisparr } from '../types/whisparr';
@@ -40,7 +40,7 @@ function Performer(props: { config: Config; stashId: string }) {
           <button
             class="FavoriteStar ps-2 btn btn-link stasharr-performer-add"
             type="button"
-            id={Stasharr.ID.PerformerAdd}
+            id={Fansarr.ID.PerformerAdd}
             onclick={addPerformer}
           >
             <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
@@ -50,7 +50,7 @@ function Performer(props: { config: Config; stashId: string }) {
           <button
             class="FavoriteStar ps-2 btn btn-link"
             type="button"
-            id={Stasharr.ID.PerformerMonitor}
+            id={Fansarr.ID.PerformerMonitor}
             onclick={() => toggleMonitor(performerDetails()!)}
             data-bs-toggle="tooltip"
             data-bs-title={`${performerDetails()?.monitored ? 'Unmonitor' : 'Monitor'} ${performerDetails()?.fullName} in Whisparr`}

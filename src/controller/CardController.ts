@@ -1,6 +1,6 @@
 import { Config } from '../models/Config';
 import { extractStashIdFromSceneCard } from '../util/util';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { StashDB } from '../enums/StashDB';
 import { render } from 'solid-js/web';
 import { BaseController } from './BaseController';
@@ -15,7 +15,7 @@ export class CardController extends BaseController {
 
   shouldReinit(): boolean {
     let sceneCards = document.querySelectorAll<HTMLElement>(
-      Stasharr.DOMSelector.SceneCardWithNoStatus(),
+      Fansarr.DOMSelector.SceneCardWithNoStatus(),
     );
     if (sceneCards.length > 0) {
       return true;
@@ -30,7 +30,7 @@ export class CardController extends BaseController {
       const stashId = extractStashIdFromSceneCard(sceneCard);
       if (
         stashId &&
-        !sceneCard.querySelector(Stasharr.DOMSelector.CopyCardButton)
+        !sceneCard.querySelector(Fansarr.DOMSelector.CopyCardButton)
       ) {
         return true;
       }
@@ -49,7 +49,7 @@ export class CardController extends BaseController {
         // Add the main scene button only if Whisparr is configured
         if (
           this._config.whisparrApiKey !== '' &&
-          !sceneCard.querySelector(Stasharr.DOMSelector.CardButton)
+          !sceneCard.querySelector(Fansarr.DOMSelector.CardButton)
         ) {
           render(
             () =>
@@ -62,7 +62,7 @@ export class CardController extends BaseController {
         }
 
         // Always add the copy button regardless of Whisparr configuration
-        if (!sceneCard.querySelector(Stasharr.DOMSelector.CopyCardButton)) {
+        if (!sceneCard.querySelector(Fansarr.DOMSelector.CopyCardButton)) {
           render(() => CopyCardButton({ stashId: stashId }), sceneCard);
         }
       }

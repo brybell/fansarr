@@ -1,7 +1,7 @@
 import { createMemo, createResource, For } from 'solid-js';
 import { useSettings } from '../../../contexts/useSettings';
 import { Form } from 'solid-bootstrap';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { ReactiveStoreFactory } from '../../../factory/ReactiveStoreFactory';
 import WhisparrService from '../../../service/WhisparrService';
 
@@ -28,7 +28,7 @@ const RootFolderPathSelect = () => {
         aria-label="Root Folder Path select"
         onChange={(e) => handleRootFolderPathChange(e.target.value)}
         value={store.rootFolderPath}
-        id={Stasharr.ID.Modal.RootFolderPath}
+        id={Fansarr.ID.Modal.RootFolderPath}
       >
         <option value="invalid">Select the Root Folder Path...</option>
         <For each={rootFolderPaths()}>

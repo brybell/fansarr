@@ -1,6 +1,6 @@
 import { Form } from 'solid-bootstrap';
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { createMemo, createResource, For } from 'solid-js';
 import WhisparrService from '../../../service/WhisparrService';
 
@@ -37,9 +37,9 @@ const Tags = () => {
         aria-label="Tags select"
         multiple={true}
         onChange={(e) => handleTagsChange(e.target.selectedOptions)}
-        id={Stasharr.ID.Modal.Tags}
+        id={Fansarr.ID.Modal.Tags}
         data-bs-toggle="tooltip"
-        data-bs-title="Enter tags to be associated with the scenes, studios, and performers added via Stasharr."
+        data-bs-title="Enter tags to be associated with the scenes, studios, and performers added via Fansarr."
       >
         <For each={tags()}>
           {(tag) => (

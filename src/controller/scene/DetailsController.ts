@@ -1,5 +1,5 @@
 import { render } from 'solid-js/web';
-import { Stasharr } from '../../enums/Stasharr';
+import { Fansarr } from '../../enums/Stasharr';
 import { StashDB } from '../../enums/StashDB';
 import { Config } from '../../models/Config';
 import { DetailsMutationHandler } from '../../mutation-handlers/scene/DetailsMutationHandler';
@@ -15,7 +15,7 @@ export class DetailsController extends BaseController {
   private floatingCopyButtonDispose?: () => void;
 
   initialize(): void {
-    const details = document.querySelector(Stasharr.DOMSelector.HeaderDetails);
+    const details = document.querySelector(Fansarr.DOMSelector.HeaderDetails);
     const floatEnd = document.querySelector(
       StashDB.DOMSelector.SceneInfoCardHeaderFloatEnd,
     );
@@ -29,7 +29,7 @@ export class DetailsController extends BaseController {
       }
     }
     const headerButton = document.querySelector(
-      Stasharr.DOMSelector.HeaderButton,
+      Fansarr.DOMSelector.HeaderButton,
     );
     const cardHeader: HTMLElement | null = document.querySelector<HTMLElement>(
       StashDB.DOMSelector.SceneInfoCardHeader,
@@ -49,7 +49,7 @@ export class DetailsController extends BaseController {
     }
 
     const floatingCopyButton = document.querySelector(
-      Stasharr.DOMSelector.FloatingCopyButton,
+      Fansarr.DOMSelector.FloatingCopyButton,
     );
     if (floatingCopyButton === null && stashId !== null) {
       if (!this.floatingCopyButtonDispose) {
@@ -61,12 +61,12 @@ export class DetailsController extends BaseController {
     }
   }
   shouldReinit(): boolean {
-    const details = document.querySelector(Stasharr.DOMSelector.HeaderDetails);
+    const details = document.querySelector(Fansarr.DOMSelector.HeaderDetails);
     const headerButton = document.querySelector(
-      Stasharr.DOMSelector.HeaderButton,
+      Fansarr.DOMSelector.HeaderButton,
     );
     const floatingCopyButton = document.querySelector(
-      Stasharr.DOMSelector.FloatingCopyButton,
+      Fansarr.DOMSelector.FloatingCopyButton,
     );
     const sceneInfoCardHeader = document.querySelector(
       StashDB.DOMSelector.SceneInfoCardHeader,

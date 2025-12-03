@@ -39,24 +39,24 @@ export class ScenesListController extends BaseController {
           sceneListCommandRow.firstChild?.nodeName,
         );
 
-        // Check for existing Stasharr elements
-        const existingStasharrActions = document.querySelector(
+        // Check for existing Fansarr elements
+        const existingFansarrActions = document.querySelector(
           '#stasharr-actions-dropdown',
         );
-        const existingStasharrButtons =
+        const existingFansarrButtons =
           sceneListCommandRow.querySelectorAll('.stasharr-button');
 
         console.log(
           '🎯 ScenesListController: existing actions dropdown:',
-          !!existingStasharrActions,
+          !!existingFansarrActions,
         );
         console.log(
           '🎯 ScenesListController: existing stasharr buttons count:',
-          existingStasharrButtons.length,
+          existingFansarrButtons.length,
         );
 
-        // Only add if no Stasharr actions exist
-        if (!existingStasharrActions && existingStasharrButtons.length === 0) {
+        // Only add if no Fansarr actions exist
+        if (!existingFansarrActions && existingFansarrButtons.length === 0) {
           console.log(
             '🎯 ScenesListController: Adding new SceneList component',
           );
@@ -73,7 +73,7 @@ export class ScenesListController extends BaseController {
           console.log('🎯 ScenesListController: SceneList render complete');
         } else {
           console.log(
-            '🎯 ScenesListController: Skipped - Stasharr elements already exist',
+            '🎯 ScenesListController: Skipped - Fansarr elements already exist',
           );
         }
       } else {

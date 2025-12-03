@@ -1,5 +1,5 @@
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import SmartUrlInput from '../common/SmartUrlInput';
 
 const StashInstance = () => {
@@ -13,11 +13,11 @@ const StashInstance = () => {
 
   return (
     <SmartUrlInput
-      label="Stash Instance URL"
+      label="FansDB Instance URL"
       value={store.stashDomain || ''}
       onChange={handleChange}
       serviceType="stash"
-      id={Stasharr.ID.Modal.StashDomain}
+      id={Fansarr.ID.Modal.StashDomain}
       placeholder="Enter your Stash instance URL"
       required={false}
     />

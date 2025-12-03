@@ -1,7 +1,7 @@
 import { createMemo, createResource, For } from 'solid-js';
 import { useSettings } from '../../../contexts/useSettings';
 import { Form } from 'solid-bootstrap';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { ReactiveStoreFactory } from '../../../factory/ReactiveStoreFactory';
 import WhisparrService from '../../../service/WhisparrService';
 
@@ -28,7 +28,7 @@ const QualityProfileSelect = () => {
         aria-label="Quality Profile select"
         onChange={(e) => handleQualityProfileChange(parseInt(e.target.value))}
         value={store.qualityProfile}
-        id={Stasharr.ID.Modal.QualityProfile}
+        id={Fansarr.ID.Modal.QualityProfile}
       >
         <option>Select the Quality Profile...</option>
         <For each={qualityProfiles()}>

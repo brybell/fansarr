@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'solid-js';
 import { Config } from '../models/Config';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { getButtonDetails, clickHandler } from '../util/button';
 import { fetchWhisparrSceneAndStatus } from '../util/util';
 import LoadingButton from './LoadingButton';
@@ -53,7 +53,7 @@ function SceneButton(props: {
             <button
               class={buttonDetails().class}
               disabled={buttonDetails().disabled}
-              id={props.header ? Stasharr.ID.HeaderButton : undefined}
+              id={props.header ? Fansarr.ID.HeaderButton : undefined}
               data-stasharr-scenestatus={whisparrSceneAndStatus()?.status}
               data-bs-toggle="tooltip"
               data-bs-title={buttonDetails().tooltip}

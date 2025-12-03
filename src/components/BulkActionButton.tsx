@@ -1,4 +1,4 @@
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { StashDB } from '../enums/StashDB';
@@ -21,7 +21,7 @@ const BulkActionButton = (props: { actionType: 'search' | 'add' }) => {
       return {
         icon: 'fa-solid fa-search',
         className: 'stasharr-button stasharr-button-searchable',
-        id: Stasharr.ID.SearchAllExisting,
+        id: Fansarr.ID.SearchAllExisting,
         sceneStatus: SceneStatus.EXISTS_AND_NO_FILE,
         searchAction: SceneService.triggerWhisparrSearchAll,
         successMessage: 'Triggered search for all',
@@ -30,7 +30,7 @@ const BulkActionButton = (props: { actionType: 'search' | 'add' }) => {
     return {
       icon: 'fa-solid fa-download',
       className: 'stasharr-button stasharr-button-add',
-      id: Stasharr.ID.AddAllAvailable,
+      id: Fansarr.ID.AddAllAvailable,
       sceneStatus: SceneStatus.NOT_IN_WHISPARR,
       addAction: SceneService.lookupAndAddAll,
       successMessage: 'Added',
@@ -48,15 +48,15 @@ const BulkActionButton = (props: { actionType: 'search' | 'add' }) => {
     const stashIdtoSceneCardAndStatusMap: StashIdToSceneCardAndStatusMap =
       new Map();
     const sceneCards = document.querySelectorAll<HTMLElement>(
-      Stasharr.DOMSelector.SceneCardByButtonStatus(details.sceneStatus),
+      Fansarr.DOMSelector.SceneCardByButtonStatus(details.sceneStatus),
     );
 
     sceneCards.forEach((node) => {
       const stashId = extractStashIdFromSceneCard(node);
       if (stashId) {
         const sceneStatusRaw = node
-          .querySelector(Stasharr.DOMSelector.CardButton)
-          ?.getAttribute(Stasharr.DataAttribute.SceneStatus);
+          .querySelector(Fansarr.DOMSelector.CardButton)
+          ?.getAttribute(Fansarr.DataAttribute.SceneStatus);
         const sceneStatusNumber = parseInt(sceneStatusRaw || '-1', 10);
 
         if (sceneStatusNumber > -1) {

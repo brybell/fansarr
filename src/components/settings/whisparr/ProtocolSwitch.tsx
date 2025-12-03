@@ -1,4 +1,4 @@
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { useSettings } from '../../../contexts/useSettings';
 
 const ProtocolSwitch = () => {
@@ -13,7 +13,7 @@ const ProtocolSwitch = () => {
       <input
         class="form-check-input"
         role="switch"
-        id={Stasharr.ID.Modal.Protocol}
+        id={Fansarr.ID.Modal.Protocol}
         data-bs-toggle="tooltip"
         aria-label="Enable if you have configured Whisparr with valid certs, otherwise leave unchecked."
         data-bs-title="Enable if you have configured Whisparr with valid certs, otherwise leave unchecked."
@@ -21,7 +21,7 @@ const ProtocolSwitch = () => {
         checked={store.protocol}
         onChange={(e) => handleProtocolChange(e.target.checked)}
       />
-      <label class="form-check-label" for={Stasharr.ID.Modal.Protocol}>
+      <label class="form-check-label" for={Fansarr.ID.Modal.Protocol}>
         HTTPS
       </label>
     </div>

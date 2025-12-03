@@ -1,5 +1,5 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { Stasharr } from '../enums/Stasharr';
+import { Fansarr } from '../enums/Stasharr';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from 'solid-fontawesome';
 
@@ -13,7 +13,7 @@ function LoadingButton(props: { header: boolean }) {
         'stasharr-card-button stasharr-card-button-loading': !props.header,
       }}
       disabled
-      id={props.header ? Stasharr.ID.HeaderButton : undefined}
+      id={props.header ? Fansarr.ID.HeaderButton : undefined}
     >
       <FontAwesomeIcon icon="fa-spin fa-spinner" />
       {props.header ? ' Loading' : ''}

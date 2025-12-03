@@ -1,5 +1,5 @@
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 
 const LinkBehaviorSetting = () => {
   const { store, setStore } = useSettings();
@@ -13,12 +13,12 @@ const LinkBehaviorSetting = () => {
       <input
         class="form-check-input"
         role="switch"
-        id={Stasharr.ID.OpenLinksInNewTab}
+        id={Fansarr.ID.OpenLinksInNewTab}
         type="checkbox"
         checked={store.openLinksInNewTab}
         onChange={(e) => handleChange(e.target.checked)}
       />
-      <label class="form-check-label" for={Stasharr.ID.OpenLinksInNewTab}>
+      <label class="form-check-label" for={Fansarr.ID.OpenLinksInNewTab}>
         Open links in new tab
         <small class="text-muted d-block">
           When enabled, Whisparr, Stash, and documentation links will open in

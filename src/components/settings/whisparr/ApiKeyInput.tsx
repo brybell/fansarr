@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from 'solid-fontawesome';
 import { useSettings } from '../../../contexts/useSettings';
-import { Stasharr } from '../../../enums/Stasharr';
+import { Fansarr } from '../../../enums/Stasharr';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { createSignal } from 'solid-js';
@@ -25,7 +25,7 @@ const WhisparrApiKeyInput = () => {
     <div class="form-floating mb-3">
       <input
         class="form-control"
-        id={Stasharr.ID.Modal.ApiKey}
+        id={Fansarr.ID.Modal.ApiKey}
         name="whisparrApiKey"
         placeholder=""
         data-bs-toggle="tooltip"
@@ -35,7 +35,7 @@ const WhisparrApiKeyInput = () => {
         value={store.whisparrApiKey}
         onChange={(e) => handleApiKeyChange(e.target.value)}
       />
-      <label for={Stasharr.ID.Modal.ApiKey}>Whisparr API Key</label>
+      <label for={Fansarr.ID.Modal.ApiKey}>Whisparr API Key</label>
       <button
         class="btn btn-sm toggle-password"
         type="button"
