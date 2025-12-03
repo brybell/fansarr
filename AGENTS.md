@@ -1,65 +1,57 @@
 # AGENTS.md
 
-This document is a quick, practical guide for agentic coding assistants working in this repository. It summarizes how the project is structured, where to make changes, how to validate them, and how to ship them safely with the repo’s conventions and tooling.
+## Commands
 
-## Project Snapshot
+- Install: `npm ci`
+- Dev: `npm run dev` (webpack dev server)
+- Build: `npm run build`
+- Lint/fix: `npm run lint`
+- Commit: `npm run cm` (conventional commits)
 
-- Type: Browser userscript that augments StashDB and integrates with Whisparr v3+
+## Code Style
+
 - Framework: SolidJS + TypeScript
-- Build: Webpack (webpack-userscript)
-- Styles: SCSS + Bootstrap
-- Quality: ESLint + Prettier + Husky + commitlint (Conventional Commits)
-- Package manager: npm
+- Imports: Group external libs first, then internal modules
+- Formatting: Single quotes, Prettier + ESLint (auto-fix on lint)
+- Types: Strict TypeScript enabled, prefer interfaces for objects
+- Naming: PascalCase for components, camelCase for functions/variables
+- Error handling: Use try/catch, log errors, return null/undefined for failures
+- No tests configured (no test framework present)
 
-Key value props:
+## Key Patterns
 
-- One‑click scene actions and bulk actions
-- Progress modal for bulk feedback (noisy toasts avoided in bulk flows)
-- Service layer separation for StashDB/Whisparr calls
-
-## Common Commands
-
-- Install deps: `npm ci`
-- Dev server (proxy userscript): `npm run dev`
-- Build production userscript: `npm run build`
-- Lint + autofix: `npm run lint`
-- Conventional commit helper: `npm run cm`
-
-Husky + commitlint enforce Conventional Commits and body line length in commit messages.
+- Service layer architecture (src/service/)
+- Bulk operations use FeedbackService for progress tracking
+- Suppress toasts in bulk flows (`suppressToasts?: boolean`)
+- Conventional commits required (Husky + commitlint)
 
 ## Codebase Map (where to change what)
 
 - UI entry (bulk actions): `src/components/BulkActionDropdown.tsx`
-
   - Owns the Stasharr Actions dropdown and confirmation modals
   - Starts/updates bulk progress via FeedbackService
   - Uses StashDBService for titles and SceneService for work
 
 - Progress UI: `src/components/ProgressModal.tsx`
-
   - Renders overall progress, item statuses, skipped info, and empty-state infoMessage
 
 - Feedback + operations state: `src/service/FeedbackService.ts`
-
   - Global state source for ProgressModal
   - Methods returned by `startBulkOperation`: `updateItem`, `addItems`, `removeItem`, `updateItemName(s)`, `setSkippedInfo`, `setInfo`, `complete`
   - Button state helpers: `startButtonOperation`, `completeButtonOperation`
 
 - Scene domain logic: `src/service/SceneService.ts`
-
   - Lookup/add/search flows
   - Bulk orchestration helpers (`lookupAndAddAll`, `triggerWhisparrSearchAll`, `addAllMissingScenes`)
   - Accepts `{ suppressToasts?: boolean }` where appropriate to keep bulk UX clean
 
 - Comparison logic: `src/service/SceneComparisonService.ts`
-
   - Cross-checks StashDB vs. Whisparr and computes missing scenes
   - Supports `suppressToasts` in bulk flows
 
 - StashDB GraphQL: `src/service/StashDBService.ts`
-
   - `getSceneById(id)` via GraphQL `findScene`
-  - `getSceneTitlesByIds(ids)` resolves titles by ID (no text “OR” search)
+  - `getSceneTitlesByIds(ids)` resolves titles by ID (no text "OR" search)
   - All queries support `suppressToasts`
 
 - Whisparr REST: `src/service/WhisparrService.ts`
@@ -78,7 +70,7 @@ UX rules of thumb
 
 - Bulk operations use the Progress Modal for all detailed feedback
 - Use `setSkippedInfo(count, "already in Whisparr")` to summarize skips
-- For “nothing to do” cases, start a bulk op with no items and set `setInfo("No scenes available …")` then `complete()`; do not add dummy “success” items
+- For "nothing to do" cases, start a bulk op with no items and set `setInfo("No scenes available …")` then `complete()`; do not add dummy "success" items
 - Titles shown in progress should be Scene Titles (via StashDB by ID), not hashes
 
 Toasts
@@ -125,8 +117,8 @@ Service/API work
 - Commit messages follow Conventional Commits and commitlint constraints
 - Bulk UI:
   - Progress shows titles, per-item statuses
-  - Skipped info says “already in Whisparr”
-  - Empty-state shows info, not “1/1 succeeded”
+  - Skipped info says "already in Whisparr"
+  - Empty-state shows info, not "1/1 succeeded"
 
 ## Dev Setup (for local manual testing)
 

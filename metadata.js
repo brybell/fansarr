@@ -2,7 +2,8 @@ import meta from './package.json' with { type: 'json' };
 
 export default {
   name: 'fansarr',
-  description: meta.description + ' (Fork of Stasharr by enymawse)',
+  description:
+    meta.description + ' (Fork of Stasharr by enymawse - FansDB.cc fork)',
   version: meta.version,
   author: meta.author,
   source: 'https://github.com/brybell/fansarr',
