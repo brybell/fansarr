@@ -7,17 +7,10 @@
       "component": "",
       "package-name": "fansarr",
       "changelog-path": "CHANGELOG.md",
-      "extra-files": [
-        {
-          "type": "plain",
-          "path": "package.json",
-          "jsonpath": "$.version"
-        }
-      ]
+      "prerelease": true
     }
   },
   "include-component-in-tag": false,
   "skip-github-release": false,
-  "skip-github-pull-request": true,
-  "prerelease": true
+  "skip-github-pull-request": true
 }
