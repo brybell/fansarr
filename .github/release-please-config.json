@@ -1,16 +1,23 @@
 {
   "release-type": "node",
-  "prerelease": true,
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     ".": {
       "component": "",
       "package-name": "fansarr",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "plain",
+          "path": "package.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   },
   "include-component-in-tag": false,
   "skip-github-release": false,
-  "skip-github-pull-request": true
+  "skip-github-pull-request": true,
+  "prerelease": true
 }
