@@ -290,3 +290,5 @@ If Fansarr has improved your content management workflow:
 # Test release-please fix
 
 # Testing release-please fix
+
+trigger release
