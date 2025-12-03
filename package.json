@@ -1,6 +1,6 @@
 {
   "name": "fansarr",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "A fork of Stasharr that enhances your FansDB experience by integrating Whisparr with this UserScript.",
   "main": "fansarr.js",
   "scripts": {
